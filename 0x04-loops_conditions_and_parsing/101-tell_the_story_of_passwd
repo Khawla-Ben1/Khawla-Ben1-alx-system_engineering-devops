@@ -4,7 +4,7 @@
 while IFS=: read -r username password userid groupid userdesc homedir shell; do
     # Extract relevant information from the line
     gang=$(grep -w "$groupid" /etc/group | cut -d: -f1)
-    shell_desc=$(grep -w "$shell" /etc/shells | cut -d/ -f3)
+    shell_desc=$(basename "$shell")
 
     # Display the information based on the extracted values
     echo "The user $username is part of the $groupid gang, lives in $homedir and rides $shell_desc. $userid's place is protected by the passcode $password, more info about the user here: $userdesc"
