@@ -1,3 +1,8 @@
-#!/usr/bin/env ruby#!/usr/bin/env ruby
-#7. OMG WHY ARE YOU SHOUTING?
-puts ARGV[0].scan(/[A-Z]/).join
+#!/usr/bin/env ruby
+pattern = /[A-Z]/
+input = ARGV[0]
+
+matches = input.scan(pattern)
+result = matches.join
+
+puts result
