@@ -1,3 +1,3 @@
 #!/usr/bin/env ruby
-# Simply matching Holberton
+# 0. Simply matching School
 puts ARGV[0].scan(/School/).join
