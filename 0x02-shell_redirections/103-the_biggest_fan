@@ -1,2 +1,2 @@
 #!/bin/bash
-awk '{count[$1]++} END {for (host in count) print host}' FS='\t' "$1" | sort | uniq -c | sort -nr | head -n 11 | awk '{print $2}'
+cut -f1 "$1" | sort | uniq -c | sort -nr | head -n 11 | cut -d' ' -f8
