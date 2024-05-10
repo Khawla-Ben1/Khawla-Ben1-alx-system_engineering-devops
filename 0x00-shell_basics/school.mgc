@@ -1,4 +1,2 @@
-for file in *; do
-    echo -n "$file: "
-    file -b --mime-type "$file"
-done
+0 string SCHOOL School data
+file -m school.mgc *
