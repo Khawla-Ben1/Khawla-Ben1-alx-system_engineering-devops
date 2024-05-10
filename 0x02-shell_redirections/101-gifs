@@ -1,4 +1,2 @@
 #!/bin/bash
-
-# Find all files with .gif extension, including hidden ones, and sort them case-insensitively by byte values
 find . -type f -iname "*.gif" -printf "%f\n" | LC_COLLATE=C sort -f
