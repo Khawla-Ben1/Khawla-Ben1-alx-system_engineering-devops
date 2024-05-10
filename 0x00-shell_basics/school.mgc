@@ -1,3 +1,4 @@
 for file in *; do
-    echo "$file: $(file -b --mime-type "$file")"
+    echo -n "$file: "
+    file -b --mime-type "$file"
 done
