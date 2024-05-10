@@ -1,2 +1,3 @@
 0 string School School data
-!:mime SCHOOL
+file -C -m school.magic
+
