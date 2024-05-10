@@ -1,2 +1,3 @@
-0 string School School data
-file -C -m school.magic
+for file in *; do
+    echo "$file: $(file -b --mime-type "$file")"
+done
