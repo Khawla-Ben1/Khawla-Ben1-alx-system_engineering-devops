@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# This script displays a statement indefinitely
+# Prints a string every 2 seconds
 
-while true; do
+while (( 1 )); do
 	echo "To infinity and beyond"
 	sleep 2
 done
