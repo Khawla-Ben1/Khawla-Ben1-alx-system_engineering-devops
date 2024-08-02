@@ -3,28 +3,28 @@
 Gather employee data from API and display TODO list progress.
 '''
 
+import re
 import requests
-from sys import argv
+import sys
 
-if __name__ == "__main__":
-    if len(argv) != 2:
-        print("Usage: python3 <script_name> <employee_id>")
-        exit(1)
-    
-    employee_id = argv[1]
-    api = 'https://jsonplaceholder.typicode.com/'
+REST_API = 'https://jsonplaceholder.typicode.com/'
 
-    endpoint = f'users/{employee_id}'
-    employee = requests.get(api + endpoint).json()
-
-    endpoint = f'todos?userId={employee_id}'
-    tasks = requests.get(api + endpoint).json()
-
-    employee_name = employee.get("name")
-    total_tasks = len(tasks)
-    completed_tasks = [task for task in tasks if task.get("completed")]
-    completed_count = len(completed_tasks)
-
-    print(f"Employee {employee_name} is done with tasks({completed_count}/{total_tasks}):")
-    for task in completed_tasks:
-        print(f"\t {task.get('title')}")
+if __name__ == '__main__':
+    if len(sys.argv) > 1:
+        if re.fullmatch(r'\d+', sys.argv[1]):
+            id = int(sys.argv[1])
+            req = requests.get('{}/users/{}'.format(REST_API, id)).json()
+            task_req = requests.get('{}/todos'.format(REST_API)).json()
+            emp_name = req.get('name')
+            tasks = list(filter(lambda x: x.get('userId') == id, task_req))
+            completed_tasks = list(filter(lambda x: x.get('completed'), tasks))
+            print(
+                'Employee {} is done with tasks({}/{}):'.format(
+                    emp_name,
+                    len(completed_tasks),
+                    len(tasks)
+                )
+            )
+            if len(completed_tasks) > 0:
+                for task in completed_tasks:
+                    print('\t {}'.format(task.get('title')))
