@@ -1,3 +1,5 @@
+#!/bin/bash
+# set up a UFW firewall to redirect traffic from port 8080 to port 80
 ufw status | grep -q "Status: active" || ufw enable
 ufw allow 80/tcp
 ufw allow 8080/tcp
