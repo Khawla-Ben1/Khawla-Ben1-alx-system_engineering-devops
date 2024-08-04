@@ -1,0 +1,8 @@
+ufw status | grep -q "Status: active" || ufw enable
+ufw allow 80/tcp
+ufw allow 8080/tcp
+echo "Redirecting port 8080 to port 80..."
+ufw route allow proto tcp from any to any port 8080 comment 'Redirect port 8080 to port 80'
+ufw route deny proto tcp from any to any port 80 comment 'Deny direct port 80 traffic' 
+ufw reload
+ufw status verbose
