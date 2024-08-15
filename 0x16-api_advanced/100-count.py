@@ -3,8 +3,8 @@
 This module contains the function count_words.
 """
 
-import requests
 import re
+import requests
 from collections import defaultdict
 
 
