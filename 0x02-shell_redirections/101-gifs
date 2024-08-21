@@ -1,2 +1,2 @@
 #!/bin/bash
-find . -type f -name "*.gif" | sed 's/^\.\///; s/\.gif$//' | sort -f
+find . -type f -name "*.gif" -print0 | xargs -0 -I {} bash -c 'echo "{}" | sed "s|^./||" | sed "s|\.gif$||"' | sort -f
