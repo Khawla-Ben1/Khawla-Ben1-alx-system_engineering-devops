@@ -3,22 +3,24 @@
 This module contains the function count_words.
 """
 
+from collections import defaultdict
 import re
 import requests
-from collections import defaultdict
 
 
 def count_words(subreddit, word_list, hot_list=None, after=None):
 	"""
-	Recursively queries the Reddit API to count occurrences of keywords in hot article titles
-	for a given subreddit. Results are printed in descending order of frequency and alphabetically
+	Recursively queries the Reddit API to count occurrences of
+	keywords in hot article titles
+	for a given subreddit. Results are printed in descending
+	order of frequency and alphabetically
 	if frequencies are the same.
 
 	Args:
 		subreddit (str): The subreddit to query.
 		word_list (list): List of keywords to count.
-		hot_list (list): Accumulator list to hold titles (used for recursion).
-		after (str): The ID of the last post retrieved, used for pagination (used for recursion).
+		hot_list (list): Accumulator list to hold titles.
+		after (str): The ID of the last post retrieved.
 	"""
 	if hot_list is None:
 		hot_list = []
