@@ -33,8 +33,7 @@ def count_words(subreddit, word_list, hot_list=None, after=None):
     params = {'after': after}
 
     try:
-        response = requests.get(url, headers=headers, params=params,
-        allow_redirects=False)
+        response = requests.get(url, headers=headers, params=params, allow_redirects=False)
         if response.status_code != 200:
             return
 
@@ -51,16 +50,13 @@ def count_words(subreddit, word_list, hot_list=None, after=None):
             count_words(subreddit, word_list, hot_list, after)
         else:
             word_count = defaultdict(int)
-            word_pattern = re.compile(r'\b(?:' +
-            '|'.join(map(re.escape, word_list))+
-            r')\b', re.IGNORECASE)
+            word_pattern = re.compile(r'\b(?:' + '|'.join(map(re.escape, word_list)) + r')\b', re.IGNORECASE)
             for title in hot_list:
                 matches = word_pattern.findall(title)
                 for match in matches:
                     word_count[match.lower()] += 1
 
-            sorted_counts = sorted(word_count.items(),
-            key=lambda item: (-item[1], item[0]))
+            sorted_counts = sorted(word_count.items(), key=lambda item: (-item[1], item[0]))
             for word, count in sorted_counts:
                 if word in word_list:
                     print(f"{word}: {count}")
